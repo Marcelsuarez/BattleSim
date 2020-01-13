@@ -1,0 +1,36 @@
+Name: Narbite;
+Type: Water;
+Rank: 1;
+Stats: 110, 40, 50, 70, 50, 30;
+Moves: Water Gun, Pound, Growl, Scratch;
+-
+Name: Narghoul;
+Type: Water;
+Rank: 2;
+Stats: 120, 60, 90, 60, 70, 35;
+Moves: Aqua Tail, Pound, Bite, Take Down;
+-
+Name: Unisoul;
+Type: Water, Shadow;
+Rank: 3;
+Stats: 180, 20, 120, 70, 80, 40;
+Moves: Aqua Tail, Dark Fog, Tidal Wave, Take Down;
+-
+Name: Flarling;
+Type: Grass;
+Rank: 1;
+Stats: 80, 30, 70, 40, 40, 80;
+Moves: Peck, Absorb, Scratch, Growl;
+-
+Name: Bouqlet;
+Type: Grass, Flying;
+Rank: 2;
+Stats: 100, 90, 90, 50, 50, 85;
+Moves: Drill Peck, Absorb, Take Down, Growl;
+-
+Name: Pterangle;
+Type: Grass, Flying;
+Rank: 3;
+Stats: 130, 125, 80, 60, 60, 95;
+Moves: Drill Peck, Mega Drain, Take Down, Growl;
+-

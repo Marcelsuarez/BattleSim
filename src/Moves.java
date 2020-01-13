@@ -1,91 +1,73 @@
+import java.util.HashMap;
+import java.util.ArrayList;
+
 
 public class Moves {
 	
-private int base;
-private boolean physical;
-private String type;
-private int id;
-private String n;
-private int acc;
-private int pp;
-private int cpp;
-private String de;
+private Type type;	
+private String name;
+private HashMap<String, Integer> attri = new HashMap<String, Integer>();
 
 
 
-
-
-
-public Moves(int base, boolean physical, String type, int id, String n, int acc, int pp, int cpp, String de) {
-	this.setBase(base);
-	this.setPhysical(physical);
-	this.setType(type);
-	this.setId(id);
-	this.setN(n);
-	this.setAcc(acc);
-	this.setPP(pp);
-	this.setCpp(cpp);
-	this.setDe(de);
+	public Moves(String type, String name, int base, int physical, int acc, int pp, int funcId)
+	{
+		this.attri.put("base", base);
+		this.attri.put("isPhysical", physical);
+		this.attri.put("acc", acc);
+		this.attri.put("pp", pp);
+		this.attri.put("funcId", funcId);
+		this.type = Type.valueOf(type);
+		this.name = name;
+	}
 	
-}
+	public int getAttri(String name)
+	{
+		return this.attri.get(name);
+	}
 
+	public void setAttri(String name, int val)
+	{
+		assert attri.containsKey(name);
+		this.attri.put(name, val);
+	}
 
-public int getBase() {
-	return base;
-}
-public void setBase(int base) {
-	this.base = base;
-}
-public boolean isPhysical() {
-	return physical;
-}
-public void setPhysical(boolean physical) {
-	this.physical = physical;
-}
-public String getType() {
-	return type;
-}
-public void setType(String type) {
-	this.type = type;
-}
-public int getId() {
-	return id;
-}
-public void setId(int id) {
-	this.id = id;
-}
-public String getN() {
-	return n;
-}
-public void setN(String n) {
-	this.n = n;
-}
-public int getAcc() {
-	return acc;
-}
-public void setAcc(int acc) {
-	this.acc = acc;
-}
-public int getPP() {
-	return pp;
-}
-public void setPP(int pp) {
-	this.pp = pp;
-}
-public int getCpp() {
-	return cpp;
-}
-public void setCpp(int cpp) {
-	this.cpp = cpp;
-}
-public String getDe() {
-	return de;
-}
-public void setDe(String de) {
-	this.de = de;
-}
+	public String getName()
+	{
+		return this.name;
+	}
 
+	public Type getType()
+	{
+		return this.type;
+	}
 
+	public static ArrayList<Moves> parseStrings(String[] keys, HashMap<String, Moves> moves)
+	{
+		ArrayList<Moves> movesList = new ArrayList<>();
+		for (String name: keys)
+		{
+			assert moves.containsKey(name);
+			movesList.add(moves.get(name));
+		}
+		return movesList;
+	}
+	
 
+	@Override
+	public String toString()
+	{
+		String base = Integer.toString( this.getAttri("base"));
+		
+		return this.name + " | " + base + " | " + this.type.toString();
+	}
+
+	public boolean isPhy()
+	{
+		return (this.getAttri("isPhysical") > 0) ? true : false;
+	}
+	
+	
+	
 
 																										}

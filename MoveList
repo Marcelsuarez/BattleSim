@@ -1,0 +1,113 @@
+Name: Water Gun;
+Type: Water;
+Accuracy: 100;
+Base: 30;
+Points: 20;
+isPhysical: 0;
+Function: 0;
+-
+Name: Pound;
+Type: Light;
+Accuracy: 90;
+Base: 40;
+Points: 20;
+isPhysical: 1;
+Function: 0;
+-
+Name: Take Down;
+Type: Light;
+Accuracy: 90;
+Base: 60;
+Points: 20;
+isPhysical: 1;
+Function: 0;
+-
+Name: Growl;
+Type: Light;
+Accuracy: 95;
+Base: 0;
+Points: 20;
+isPhysical: 0;
+Function: 0;
+-
+Name: Bite;
+Type: Shadow;
+Accuracy: 100;
+Base: 60;
+Points: 30;
+isPhysical: 1;
+Function: 0;
+-
+Name: Aqua Tail;
+Type: Water;
+Accuracy: 90;
+Base: 80;
+Points: 20;
+isPhysical: 1;
+Function: 0;
+-
+Name: Tidal Wave;
+Type: Water;
+Accuracy: 100;
+Base: 85;
+Points: 15;
+isPhysical: 0;
+Function: 0;
+-
+Name: Absorb;
+Type: Grass;
+Accuracy: 100;
+Base: 40;
+Points: 15;
+isPhysical: 0;
+Function: 1;
+-
+Name: Ember;
+Type: Fire;
+Accuracy: 100;
+Base: 40;
+Points: 25;
+isPhysical: 0;
+Function: 0;
+-
+Name: Scratch;
+Type: Light;
+Accuracy: 100;
+Base: 30;
+Points: 20;
+isPhysical: 1;
+Function: 0;
+-
+Name: Dark Fog;
+Type: Shadow;
+Accuracy: 80;
+Base: 60;
+Points: 5;
+isPhysical: 0;
+Function: 0;
+-
+Name: Peck;
+Type: Flying;
+Accuracy: 100;
+Base: 40;
+Points: 20;
+isPhysical: 1;
+Function: 0;
+-
+Name: Drill Peck;
+Type: Flying;
+Accuracy: 100;
+Base: 80;
+Points: 15;
+isPhysical: 1;
+Function: 0;
+-
+Name: Mega Drain;
+Type: Grass;
+Accuracy: 95;
+Base: 65;
+Points: 10;
+isPhysical: 0;
+Function: 1;
+-
+
