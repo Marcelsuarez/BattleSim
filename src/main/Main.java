@@ -1,3 +1,8 @@
+package main;
+
+import inputData.*;
+import parsers.*;
+import dataTypes.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -10,8 +15,8 @@ public class Main {
 	{
 		Random rand = new Random();
 		Scanner scan = new Scanner(System.in);
-		MoveParser moveparser = new MoveParser("MoveList");
-		MonsterParser monsterparser = new MonsterParser("MonsterList", moveparser.getMovesMap());
+		MoveParser moveparser = new MoveParser("src/inputData/MoveList");
+		MonsterParser monsterparser = new MonsterParser("src/inputData/MonsterList", moveparser.getMovesMap());
 		
 		HashMap<String, Monsters> allMonsters = monsterparser.getMonsterMap();
 		
@@ -50,7 +55,6 @@ public class Main {
 					Monsters[] mons = battle.getFaster();
 					
 					
-					
 					battle.doMove(mons[0], mons[1], mons[0].getHeldMove());
 					System.out.println(battle.getText(2)); //show use text
 					Thread.sleep(500);
@@ -75,10 +79,23 @@ public class Main {
 							Thread.sleep(500);
 							if (p)
 							{
-								System.out.println("Send out who?");
-								System.out.println(battle.getPartyFrame());
-								input = scan.nextInt();
-								battle.sendOut(p, input);
+								while (true)
+								{
+									System.out.println("Send out who?");
+									System.out.println(battle.getPartyFrame());
+									input = scan.nextInt();
+									if (battle.validSwitch(input))
+									{
+										battle.sendOut(p, input);
+										break;
+									}
+									else
+									{
+										System.out.println("Invalid input, try again");
+										Thread.sleep(500);
+									}
+									
+								}
 							}
 							else
 							{
@@ -110,25 +127,54 @@ public class Main {
 					}
 					
 					break;
-				case 5:      //on switch
-					System.out.println(battle.getPartyFrame());
-					input = scan.nextInt();
-					battle.doSwitch(input);
-					System.out.println(battle.getText(3)); //switch text
+				case 5:      //on player switch
+					while (true)
+					{
+						System.out.println("Send out who?");
+						System.out.println(battle.getPartyFrame());
+						input = scan.nextInt();
+						if (battle.validSwitch(input))
+						{
+							battle.doSwitch(input);
+							System.out.println(battle.getText(3)); //switch text
+							break;
+						}
+						else
+						{
+							System.out.println("Invalid input, try again");
+							Thread.sleep(500);
+						}
+						
+					}
 					
 					
 					battle.getEnemy().setHeldMove(rand.nextInt(4));
 					
 					battle.doMove(battle.getEnemy(), battle.getPlayer(), battle.getEnemy().getHeldMove()); //second monster goes
 					System.out.println(battle.getText(2)); //show use text
+					Thread.sleep(500);
 					System.out.println(battle.getText(0)); //show dmg text
+					Thread.sleep(500);
 					System.out.println(battle.getText(1));
 					if (battle.getPlayer().isFainted())
 					{
-						System.out.println("Send out who?");
-						System.out.println(battle.getPartyFrame());
-						input = scan.nextInt();
-						battle.sendOut(true, input);
+						while (true)
+						{
+							System.out.println("Send out who?");
+							System.out.println(battle.getPartyFrame());
+							input = scan.nextInt();
+							if (battle.validSwitch(input))
+							{
+								battle.sendOut(true, input);
+								break;
+							}
+							else
+							{
+								System.out.println("Invalid input, try again");
+								Thread.sleep(500);
+							}
+							
+						}
 					}		
 					break;
 				default:
@@ -137,32 +183,14 @@ public class Main {
 			
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 			
 		}
 		
 		
 		
 		
-		
-		
-		
-		
+
 
 	}
 

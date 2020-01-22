@@ -1,3 +1,6 @@
+package parsers;
+
+import dataTypes.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +24,7 @@ public class MoveParser extends Parser
 			String[] attri = move.split(";");
 			
 			String name = attri[0].split(":")[1];
-			System.out.println(name);
+			//System.out.println(name);
 			String type = attri[1].split(":")[1];
 			int accuracy = Integer.parseInt(attri[2].split(":")[1]);
 			int base =Integer.parseInt( attri[3].split(":")[1]);

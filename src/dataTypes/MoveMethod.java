@@ -1,3 +1,8 @@
+package dataTypes;
+
+import main.BattleInstance;
+import dataTypes.*;
+import parsers.*;
 import java.util.function.*;
 import java.util.HashMap;
 
@@ -17,6 +22,7 @@ public class MoveMethod
 	{
 
 		this.funcList.put(1, MoveMethod::drainLife);
+		this.funcList.put(2, MoveMethod::lowerAttack);
 		
 	}
 	
@@ -30,6 +36,13 @@ public class MoveMethod
 		
 		return atk.getName() + " has healed for " + dmg/3 + " HP!";
 		
+	}
+	
+	public static String lowerAttack(BattleInstance battle) //attacker lowers defender's attack by 1 stage
+	{
+		Monsters def = battle.getDef();
+		def.decreaseStat("atk", 1);
+		return def.getName() + "'s attack has been lowered by 1 stage!";
 		
 	}
 	

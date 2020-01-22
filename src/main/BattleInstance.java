@@ -1,6 +1,7 @@
+package main;
 
+import dataTypes.*;
 import static java.util.stream.Collectors.toList;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -111,7 +112,9 @@ public class BattleInstance
 	
 	public String getFullFrame()
 	{
-		return  this.getStatBar(true) + this.getHPbar(true) + this.getStatBar(false)  + this.getHPbar(false)	+ this.getFrame();
+		return  "____________________________________________________________\n"
+	    + this.getStatBar(true) + this.getHPbar(true) + this.getStatBar(false)
+		+ this.getHPbar(false)	+ this.getFrame();
 	}
 	
 	public String getPartyFrame()
@@ -123,6 +126,7 @@ public class BattleInstance
 		{
 			frame.append(counter + "►" + mons.getName() + " 𝐇𝐏: " + mons.getStat("hp") + "/" + mons.getBase("hp")
 			+ " " + mons.getIcon() + "\n");
+			frame.append("______________________\n");
 			counter++;
 		}
 		
@@ -135,10 +139,6 @@ public class BattleInstance
 	
 	
 	
-	public void doSwitchturn()
-	{
-		this.doMove(this.eLead, this.pLead, this.enemMove);
-	}
 	
 	public int dmgCalc(Monsters atk, Monsters def, Moves move)
 	{
@@ -273,11 +273,11 @@ public class BattleInstance
 		Monsters first = (this.pLead.getStat("speed") >= this.eLead.getStat("speed")) ? this.pLead : this.eLead;
 		Monsters second = (this.pLead.getStat("speed") >= this.eLead.getStat("speed")) ? this.eLead : this.pLead;
 		
+		//very crude way of doing this but it works
+		
 		Monsters[] list = new Monsters[2];
-		
-		
 		list[0] = first;
-		list[1] = second;
+		list[1] = second;			
 		
 		return list;
 
@@ -287,7 +287,7 @@ public class BattleInstance
 	
 	public void doSwitch(int pos)
 	{
-		Collections.swap(this.player, 0, pos);
+		Collections.swap(this.player, 0, pos - 1);
 		this.pLead = this.player.get(0);
 		this.switchText = this.pLead.getName() + " gets switched in!";
 	}
@@ -321,4 +321,15 @@ public class BattleInstance
 	{
 		this.win = (this.player.size() == 0 | this.enemy.size() == 0);
 	}
+	
+	
+	public boolean validSwitch(int input)
+	{
+		return (input <= this.player.size());
+	}
+	
+	
+	
+	
+	
 }

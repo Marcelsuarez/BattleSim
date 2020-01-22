@@ -28,7 +28,7 @@ Accuracy: 95;
 Base: 0;
 Points: 20;
 isPhysical: 0;
-Function: 0;
+Function: 2;
 -
 Name: Bite;
 Type: Shadow;

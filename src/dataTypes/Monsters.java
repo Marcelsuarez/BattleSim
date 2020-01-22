@@ -1,3 +1,6 @@
+package dataTypes;
+
+
 import static java.util.stream.Collectors.toList;
 
 import java.lang.Math;
@@ -13,7 +16,7 @@ public class Monsters
 	private String name;
 	private HashMap<String, Integer> stats = new HashMap<String, Integer>();
 	private HashMap<String, Integer> cstats = new HashMap<String, Integer>(); //current stats not base
-	private HashMap<String, Integer> modifiers = new HashMap<String, Integer>();
+	private HashMap<String, Modifier> modifiers = new HashMap<String, Modifier>();
 	private ArrayList<Moves> moves;
 	private Moves heldMove;
 	
@@ -29,8 +32,6 @@ public class Monsters
 						.stream().map(Type::valueOf)
 						.collect(toList());
 		
-		
-		
 		this.stats.put("hp", statsList.get(0));
 		this.stats.put("atk", statsList.get(1));
 		this.stats.put("spa", statsList.get(2));
@@ -41,9 +42,13 @@ public class Monsters
 		
 		stats.forEach((stat, value) ->
 		{
-			cstats.put(stat, value);
-			modifiers.put(stat, 1);
+			this.cstats.put(stat, value);
+			this.modifiers.put(stat, Modifier.ST0);
+			
 		});
+		
+		this.modifiers.remove("hp"); //hp cannot be affected by stat modifiers so we remove
+		
 		
 	}
 	
@@ -158,5 +163,39 @@ public class Monsters
 	{
 		return (this.cstats.get("hp") <= 0);
 	}
+	
+	
+	
+	public void increaseStat(String name, int stage)
+	{
+		assert modifiers.containsKey(name);
+		assert (stage <= 6) & (stage > 0);
+		Modifier newmod = this.modifiers.get(name);
+		for (int i = 0; i < stage; i++)
+		{
+			newmod = newmod.getNext();
+			
+		}
+
+		this.modifiers.put(name, newmod);
+
+	}
+	
+	public void decreaseStat(String name, int stage)
+	{
+		assert modifiers.containsKey(name);
+		assert (stage <= 6) & (stage > 0);
+		Modifier newmod = this.modifiers.get(name);
+		for (int i = 0; i < stage; i++)
+		{
+			newmod = newmod.getPrev();
+			
+		}
+
+		this.modifiers.put(name, newmod);
+
+	}
+	
+	
 	
 }

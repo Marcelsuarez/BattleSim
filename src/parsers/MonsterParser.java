@@ -1,3 +1,6 @@
+package parsers;
+
+import dataTypes.*;
 import java.io.IOException;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -32,7 +35,7 @@ public class MonsterParser extends Parser
 			
 			String[] types = (type.indexOf(',') > 0) ? type.split(",") : new String[] {type};
 
-			 System.out.println(name);
+			// System.out.println(name);
 			
 
 			
