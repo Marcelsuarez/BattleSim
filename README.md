@@ -1,4 +1,15 @@
 # BattleSims
 
 So this is a project I worked on in my first year as CS Major and it helped me learn the main contents of how to use a programming language.
-Its a turn based RPG based on Pokemon. As time goes by I'll add more mechanics and functions and revise a lot of parts of the code that I haven't been able to get to. I believe the game is balanced to the same extent Pokemon is due to the same damage calculations and all the stats are based of several actual Pokemon at lvl 50. There's a lot left to do and a lot of code to change due to me having more experience now, because as of writing this I stopped working on the project about a year ago.
+Its a turn based RPG based on Pokemon. I've recently decided to remake this project to practice and showcase how my Java has improved, so I created a new branch to compare to the old one. Right now its in Alpha and I plan to improve on it but here are it's current features so far.
+
+### Features
+
+* Gets monsters and moves from a text file, parses through them
+* Some cool uses of the `.stream`
+* Custom types, will include a table soon
+* Hashmap abuse
+* Battle is wrapped up in its own class
+* Combat should play out the same so far
+* Monsters can have up to 2 types
+* Way less code
