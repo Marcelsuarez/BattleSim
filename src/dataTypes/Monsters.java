@@ -60,6 +60,7 @@ public class Monsters
 		this.stats = copy.getAllBaseStats();
 		this.cstats = copy.getAllCStats();	
 		this.moves = copy.getMoves();
+		this.modifiers = copy.getModifiers();
 	}
 	
 	public int getStat(String name)
@@ -75,6 +76,11 @@ public class Monsters
 	public HashMap<String, Integer> getAllCStats()
 	{
 		return this.cstats;
+	}
+	
+	public HashMap<String, Modifier> getModifiers()
+	{
+		return this.modifiers;
 	}
 	
 	public void setStat(String name, int value)
@@ -130,11 +136,7 @@ public class Monsters
 	@Override
 	public String toString()
 	{
-		
-
 		return this.name + " | Rank: " + this.rank + " | Type: " + this.getSType();
-		
-		
 	}
 
 	public String getSType()
@@ -164,7 +166,28 @@ public class Monsters
 		return (this.cstats.get("hp") <= 0);
 	}
 	
+	public void multiplyStats() //not really used for now
+	{
+		
+		HashMap<String, Integer> bstats = this.getAllBaseStats();
+		HashMap<String, Modifier> mods = this.getModifiers();
+		
+		mods.forEach((statname, modval) ->
+		{
+			this.setStat(statname, (int)(modval.getValue() * bstats.get(statname)));
+		});
+			
+		
+	}
 	
+	public void multiplyStat(String name)
+	{
+		HashMap<String, Integer> bstats = this.getAllBaseStats();
+		HashMap<String, Modifier> mods = this.getModifiers();
+		
+		this.setStat(name, (int)(mods.get(name).getValue() * bstats.get(name)));
+		
+	}
 	
 	public void increaseStat(String name, int stage)
 	{
@@ -178,6 +201,7 @@ public class Monsters
 		}
 
 		this.modifiers.put(name, newmod);
+		this.multiplyStat(name);
 
 	}
 	
@@ -193,6 +217,7 @@ public class Monsters
 		}
 
 		this.modifiers.put(name, newmod);
+		this.multiplyStat(name);
 
 	}
 	

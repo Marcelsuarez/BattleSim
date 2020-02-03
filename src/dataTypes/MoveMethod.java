@@ -1,6 +1,7 @@
 package dataTypes;
 
 import main.BattleInstance;
+import java.util.Random;
 import dataTypes.*;
 import parsers.*;
 import java.util.function.*;
@@ -42,9 +43,60 @@ public class MoveMethod
 	{
 		Monsters def = battle.getDef();
 		def.decreaseStat("atk", 1);
-		return def.getName() + "'s attack has been lowered by 1 stage!";
+		return def.getName() + "'s attack has been lowered by 1 stage!";	
+	}
+	
+	public static String lowerDefense(BattleInstance battle) //attacker lowers defender's attack by 1 stage
+	{
+		Monsters def = battle.getDef();
+		def.decreaseStat("def", 1);
+		return def.getName() + "'s defense has been lowered by 1 stage!";	
+	}
+	
+	public static String increaseDefense(BattleInstance battle) //attacker lowers defender's attack by 1 stage
+	{
+		Monsters atk = battle.getAtk();
+		atk.increaseStat("def", 1);
+		return atk.getName() + "'s defense has been increased by 1 stage!";	
+	}
+	
+	public static String takeRecoil(BattleInstance battle)
+	{
+		int dmg = battle.getDmg();
+		Monsters atk = battle.getAtk();
+		int recoil = dmg/3;
+		
+		if (atk.getStat("hp") - recoil <= 0)
+		{
+			atk.setStat("hp", 1);
+		}
+		else
+		{
+			atk.sumHP(recoil * -1);
+		}
+
+		return atk.getName() + " has taken " + recoil + " of recoil damage!";
 		
 	}
+	
+	public static String sharpReduceSpd(BattleInstance battle)
+	{
+		String returnstring = "";
+		int chance = new Random().nextInt(2);
+		
+		if (chance == 1)
+		{
+			Monsters def = battle.getDef();
+			def.decreaseStat("spd", 2);
+			returnstring = def.getName() + "'s special defense has been dropped by 2 stages!";
+		}
+		
+		
+		return returnstring;
+		
+		
+	}
+	
 	
 	public HashMap<Integer, Function<BattleInstance, String>> getMethodMap()
 	{

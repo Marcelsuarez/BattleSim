@@ -17,7 +17,6 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		MoveParser moveparser = new MoveParser("src/inputData/MoveList");
 		MonsterParser monsterparser = new MonsterParser("src/inputData/MonsterList", moveparser.getMovesMap());
-		
 		HashMap<String, Monsters> allMonsters = monsterparser.getMonsterMap();
 		
 		
@@ -49,6 +48,11 @@ public class Main {
 				case 2:
 				case 3:
 				case 4:
+					if (battle.getPlayer().getMoves().get(input - 1).getAttri("pp")  == 0   )
+					{
+						System.out.println("That move has no more PP left!");
+						break;
+					}
 					battle.getPlayer().setHeldMove(input - 1);
 					battle.getEnemy().setHeldMove(rand.nextInt(4)); //0-3
 					

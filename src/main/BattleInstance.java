@@ -189,32 +189,48 @@ public class BattleInstance
 		this.atk = atk;
 		this.def = def;
 		int funcid = move.getAttri("funcId");
+		int acc = move.getAttri("acc");
+		int chance = rand.nextInt(100) + 1;
+		
 		
 		this.useText = atk.getName() + " used " + move.getName() + "!";
 		
-		if (move.getAttri("base") != 0)
-		{
-			this.currentdmg =  dmgCalc(atk, def, move);
-			def.sumHP(-1 * this.currentdmg);
-			this.dmgText = "It did " + this.currentdmg + " damage! " + this.superText;
-		}
-		else
+		
+		if (chance > acc)   //Move misses in this check
 		{
 			this.currentdmg = 0;
-			this.superText = "";
+			this.moveText = "it missed!";
 			this.dmgText = "";
-		}
-		
-		if (funcid != 0)
-		{
-			this.moveText = this.funcs.getFunc(funcid).apply(this);
+			this.superText = "";
+			
 		}
 		else
 		{
-			this.moveText = "";
+			move.removePP();
+			
+			if (move.getAttri("base") != 0)
+			{
+				this.currentdmg =  dmgCalc(atk, def, move);
+				def.sumHP(-1 * this.currentdmg);
+				this.dmgText = "It did " + this.currentdmg + " damage! " + this.superText;
+			}
+			else
+			{
+				this.currentdmg = 0;
+				this.superText = "";
+				this.dmgText = "";
+			}
+			
+			if (funcid != 0)
+			{
+				this.moveText = this.funcs.getFunc(funcid).apply(this);
+			}
+			else
+			{
+				this.moveText = "";
+			}
+		
 		}
-		
-		
 	}
 	
 	public void faintTurn(boolean player)

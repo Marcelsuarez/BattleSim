@@ -69,6 +69,14 @@ private HashMap<String, Integer> attri = new HashMap<String, Integer>();
 		return (this.getAttri("isPhysical") > 0) ? true : false;
 	}
 	
+	public void removePP()
+	{
+		this.setAttri("pp", this.getAttri("pp") - 1);
+		if (this.getAttri("pp") < 0)
+		{
+			this.setAttri("pp", 0);
+		}
+	}
 	
 	
 
