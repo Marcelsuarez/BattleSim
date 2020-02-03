@@ -15,12 +15,11 @@ Its a turn based RPG based on Pokemon. I've recently decided to remake this proj
 * Way less code
 
 
-### Newest Features/Changelog
+### Newest Features/Changelog ^Feb 3^
 
-* Added stat modifications. So stats can be boosted and lowered (Uses 13 stat stages total)
-* Added a line above the battle frame
+* Modifiers correctly working now
 * Very slight code fixing
-* Added modifiers enum
-* Organized project into packages
-* Simple incorrect input handling (Haven't tested more complex cases)
+* Added more moves
+* Moves can miss now
+* Moves run out of PP and you can't use themnow
 
